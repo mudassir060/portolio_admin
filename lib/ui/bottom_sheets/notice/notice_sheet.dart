@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:portolio_admin/ui/common/app_colors.dart';
 import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../widgets/common/mytextfield/mytextfield.dart';
 import 'notice_sheet_model.dart';
 
 class NoticeSheet extends StackedView<NoticeSheetModel> {
@@ -21,32 +21,32 @@ class NoticeSheet extends StackedView<NoticeSheetModel> {
     NoticeSheetModel viewModel,
     Widget? child,
   ) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
+    return Scaffold(
+      body: SizedBox(
+        height: 300,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              AppBar(
+                  backgroundColor: const Color.fromARGB(255, 176, 213, 243),
+                  title: const Center(child: Text("ADD SKILLS"))),
+              verticalSpaceMassive,
+              const Mytextfield(
+                title: "Value",
+              ),
+              verticalSpaceSmall,
+              Slider(
+                min: 0,
+                max: 100,
+                value: viewModel.sliderValue,
+                onChanged: (value) {
+                 viewModel.slidervalue(value);
+                },
+              ),
+            ],
+          ),
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            request.title!,
-            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
-          ),
-          verticalSpaceTiny,
-          Text(
-            request.description!,
-            style: const TextStyle(fontSize: 14, color: kcMediumGrey),
-            maxLines: 3,
-            softWrap: true,
-          ),
-          verticalSpaceLarge,
-        ],
       ),
     );
   }
