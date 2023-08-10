@@ -4,7 +4,7 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PDFScreen extends StatelessWidget {
   final String pdfAssetPath;
- 
+
   const PDFScreen({Key? key, required this.pdfAssetPath}) : super(key: key);
 
   @override

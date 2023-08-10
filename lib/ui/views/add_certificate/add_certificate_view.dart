@@ -35,7 +35,7 @@ class ADDcertificateView extends StackedView<ADDcertificateViewModel> {
                   width: 150,
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color:kcDarkGreyColor)),
+                      border: Border.all(color: kcDarkGreyColor)),
                   child: viewModel.image != null
                       ? Image.file(viewModel.image!.absolute)
                       : const Icon(Icons.image),

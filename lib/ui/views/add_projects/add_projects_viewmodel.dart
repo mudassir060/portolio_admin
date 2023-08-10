@@ -19,13 +19,11 @@ class AddProjectsViewModel extends BaseViewModel {
   Future getImageGallary() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-   
-      if (pickedFile != null) {
-        image = File(pickedFile.path);
-      } else {
-        print("file not picked");
-      }
-      notifyListeners();
-    
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+    } else {
+      print("file not picked");
+    }
+    notifyListeners();
   }
 }

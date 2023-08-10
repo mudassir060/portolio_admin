@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portolio_admin/ui/common/ui_helpers.dart';
+import 'package:portolio_admin/ui/widgets/common/roundbutton/roundbutton.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../services/toastmessage_service.dart';
 import '../../widgets/common/mytextfield/mytextfield.dart';
 import 'notice_sheet_model.dart';
 
@@ -21,34 +23,7 @@ class NoticeSheet extends StackedView<NoticeSheetModel> {
     NoticeSheetModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: SizedBox(
-        height: 300,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              AppBar(
-                  backgroundColor: const Color.fromARGB(255, 176, 213, 243),
-                  title: const Center(child: Text("ADD SKILLS"))),
-              verticalSpaceMassive,
-              const Mytextfield(
-                title: "Value",
-              ),
-              verticalSpaceSmall,
-              Slider(
-                min: 0,
-                max: 100,
-                value: viewModel.sliderValue,
-                onChanged: (value) {
-                 viewModel.slidervalue(value);
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+    return Container();
   }
 
   @override

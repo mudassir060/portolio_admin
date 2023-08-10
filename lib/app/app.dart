@@ -14,6 +14,8 @@ import 'package:portolio_admin/ui/views/certificate/certificate_view.dart';
 import 'package:portolio_admin/ui/views/showcertificate/showcertificate_view.dart';
 import 'package:portolio_admin/ui/views/add_certificate/add_certificate_view.dart';
 import 'package:portolio_admin/ui/views/contact/contact_view.dart';
+import 'package:portolio_admin/services/toastmessage_service.dart';
+import 'package:portolio_admin/ui/views/add_skills/add_skills_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -30,13 +32,15 @@ import 'package:portolio_admin/ui/views/contact/contact_view.dart';
     MaterialRoute(page: ShowcertificateView),
     MaterialRoute(page: ADDcertificateView),
     MaterialRoute(page: ContactView),
+    MaterialRoute(page: AddSkillsView),
 // @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
-    // @stacked-service
+    LazySingleton(classType: ToastmessageService),
+// @stacked-service
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),

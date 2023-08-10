@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "939702316703",
+    "project_id": "protofiloadmin",
+    "storage_bucket": "protofiloadmin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939702316703:android:f05383b8daf6b77341bcaa",
+        "android_client_info": {
+          "package_name": "com.example.portolio_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939702316703-faav0rtgrih8s6moemkahumh10o9fab9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBovEXSDncES_rTYpMFB143dG7eT4w4Z1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939702316703-faav0rtgrih8s6moemkahumh10o9fab9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

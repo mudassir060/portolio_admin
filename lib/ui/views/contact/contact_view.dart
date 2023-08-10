@@ -24,32 +24,32 @@ class ContactView extends StackedView<ContactViewModel> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-             verticalSpaceMedium,
+              verticalSpaceMedium,
               Mytextfield(
                 title: "Email Id",
-                ctrl:viewModel.emailctrl,
+                ctrl: viewModel.emailctrl,
               ),
               verticalSpaceSmall,
               Mytextfield(
                 title: "Contact No",
                 ctrl: viewModel.contactctrl,
               ),
-                 verticalSpaceSmall,
+              verticalSpaceSmall,
               Mytextfield(
                 title: "Facebook link",
                 ctrl: viewModel.facebookCtrl,
               ),
-                verticalSpaceSmall,
+              verticalSpaceSmall,
               Mytextfield(
                 title: "Github link",
                 ctrl: viewModel.githubctrl,
               ),
-               verticalSpaceSmall,
+              verticalSpaceSmall,
               Mytextfield(
                 title: "Linkdin link",
                 ctrl: viewModel.linkdinctrl,
               ),
-             verticalSpaceLarge,
+              verticalSpaceLarge,
               Roundbutton(title: "UPDATE", onTap: () {})
             ],
           ),

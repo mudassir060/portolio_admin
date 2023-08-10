@@ -19,7 +19,7 @@ class AddProjectsView extends StackedView<AddProjectsViewModel> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text("ADD Projects")),
-        backgroundColor:kcPrimaryColor,
+        backgroundColor: kcPrimaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -36,7 +36,7 @@ class AddProjectsView extends StackedView<AddProjectsViewModel> {
                   width: 150,
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color:kcDarkGreyColor)),
+                      border: Border.all(color: kcDarkGreyColor)),
                   child: viewModel.image != null
                       ? Image.file(viewModel.image!.absolute)
                       : const Icon(Icons.image),

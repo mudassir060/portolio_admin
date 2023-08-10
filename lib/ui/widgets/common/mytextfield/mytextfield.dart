@@ -19,7 +19,7 @@ class Mytextfield extends StackedView<MytextfieldModel> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color:kcLightGrey,
+          color: kcLightGrey,
           width: 1.0,
         ),
         borderRadius: BorderRadius.circular(8.0),

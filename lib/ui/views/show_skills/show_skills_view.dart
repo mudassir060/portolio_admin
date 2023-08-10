@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portolio_admin/app/app.router.dart';
 import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:portolio_admin/ui/views/skill/skill_view.dart';
 import 'package:stacked/stacked.dart';
@@ -35,7 +36,7 @@ class ShowSkillsView extends StackedView<ShowSkillsViewModel> {
           })),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          viewModel.showBottomSheet();
+          viewModel.navigationService.navigateToAddSkillsView();
         },
         child: const Icon(Icons.add),
       ),

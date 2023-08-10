@@ -5,12 +5,14 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i14;
+import 'package:flutter/material.dart' as _i15;
 import 'package:flutter/material.dart';
 import 'package:portolio_admin/ui/views/add_certificate/add_certificate_view.dart'
     as _i12;
 import 'package:portolio_admin/ui/views/add_projects/add_projects_view.dart'
     as _i9;
+import 'package:portolio_admin/ui/views/add_skills/add_skills_view.dart'
+    as _i14;
 import 'package:portolio_admin/ui/views/certificate/certificate_view.dart'
     as _i10;
 import 'package:portolio_admin/ui/views/contact/contact_view.dart' as _i13;
@@ -27,7 +29,7 @@ import 'package:portolio_admin/ui/views/showcertificate/showcertificate_view.dar
 import 'package:portolio_admin/ui/views/skill/skill_view.dart' as _i5;
 import 'package:portolio_admin/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i15;
+import 'package:stacked_services/stacked_services.dart' as _i16;
 
 class Routes {
   static const homeView = '/home-view';
@@ -54,6 +56,8 @@ class Routes {
 
   static const contactView = '/contact-view';
 
+  static const addSkillsView = '/add-skills-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -67,6 +71,7 @@ class Routes {
     showcertificateView,
     aDDcertificateView,
     contactView,
+    addSkillsView,
   };
 }
 
@@ -120,23 +125,27 @@ class StackedRouter extends _i1.RouterBase {
       Routes.contactView,
       page: _i13.ContactView,
     ),
+    _i1.RouteDef(
+      Routes.addSkillsView,
+      page: _i14.AddSkillsView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.DescriptionView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.DescriptionView(),
         settings: data,
       );
@@ -145,59 +154,65 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SkillViewArguments>(
         orElse: () => const SkillViewArguments(),
       );
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => _i5.SkillView(
             key: args.key, percentage: args.percentage, label: args.label),
         settings: data,
       );
     },
     _i6.ShowSkillsView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.ShowSkillsView(),
         settings: data,
       );
     },
     _i7.ProjectsView: (data) {
       final args = data.getArgs<ProjectsViewArguments>(nullOk: false);
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i7.ProjectsView(key: args.key, image1: args.image1),
         settings: data,
       );
     },
     _i8.ShowProjectsView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.ShowProjectsView(),
         settings: data,
       );
     },
     _i9.AddProjectsView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.AddProjectsView(),
         settings: data,
       );
     },
     _i10.CertificateView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.CertificateView(),
         settings: data,
       );
     },
     _i11.ShowcertificateView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.ShowcertificateView(),
         settings: data,
       );
     },
     _i12.ADDcertificateView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.ADDcertificateView(),
         settings: data,
       );
     },
     _i13.ContactView: (data) {
-      return _i14.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i13.ContactView(),
+        settings: data,
+      );
+    },
+    _i14.AddSkillsView: (data) {
+      return _i15.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i14.AddSkillsView(),
         settings: data,
       );
     },
@@ -216,7 +231,7 @@ class SkillViewArguments {
     this.label,
   });
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   final double? percentage;
 
@@ -247,7 +262,7 @@ class ProjectsViewArguments {
     required this.image1,
   });
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   final String image1;
 
@@ -268,7 +283,7 @@ class ProjectsViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i15.NavigationService {
+extension NavigatorStateExtension on _i16.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -312,7 +327,7 @@ extension NavigatorStateExtension on _i15.NavigationService {
   }
 
   Future<dynamic> navigateToSkillView({
-    _i14.Key? key,
+    _i15.Key? key,
     double? percentage,
     String? label,
     int? routerId,
@@ -345,7 +360,7 @@ extension NavigatorStateExtension on _i15.NavigationService {
   }
 
   Future<dynamic> navigateToProjectsView({
-    _i14.Key? key,
+    _i15.Key? key,
     required String image1,
     int? routerId,
     bool preventDuplicates = true,
@@ -445,6 +460,20 @@ extension NavigatorStateExtension on _i15.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToAddSkillsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.addSkillsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -488,7 +517,7 @@ extension NavigatorStateExtension on _i15.NavigationService {
   }
 
   Future<dynamic> replaceWithSkillView({
-    _i14.Key? key,
+    _i15.Key? key,
     double? percentage,
     String? label,
     int? routerId,
@@ -521,7 +550,7 @@ extension NavigatorStateExtension on _i15.NavigationService {
   }
 
   Future<dynamic> replaceWithProjectsView({
-    _i14.Key? key,
+    _i15.Key? key,
     required String image1,
     int? routerId,
     bool preventDuplicates = true,
@@ -615,6 +644,20 @@ extension NavigatorStateExtension on _i15.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.contactView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAddSkillsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.addSkillsView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

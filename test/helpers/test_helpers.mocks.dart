@@ -8,6 +8,7 @@ import 'dart:ui' as _i5;
 
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:portolio_admin/services/toastmessage_service.dart' as _i6;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -623,6 +624,21 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
         Invocation.method(
           #completeDialog,
           [response],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [ToastmessageService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockToastmessageService extends _i1.Mock
+    implements _i6.ToastmessageService {
+  @override
+  void toastmessage(String? message) => super.noSuchMethod(
+        Invocation.method(
+          #toastmessage,
+          [message],
         ),
         returnValueForMissingStub: null,
       );

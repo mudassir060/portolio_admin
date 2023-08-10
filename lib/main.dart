@@ -4,12 +4,14 @@ import 'package:portolio_admin/app/app.dialogs.dart';
 import 'package:portolio_admin/app/app.locator.dart';
 import 'package:portolio_admin/app/app.router.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
+  await Firebase.initializeApp();
   runApp(const MainApp());
 }
 

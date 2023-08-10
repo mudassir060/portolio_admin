@@ -25,7 +25,7 @@ class HomeView extends StackedView<HomeViewModel> {
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Certificate'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
-        selectedItemColor:kcPrimaryColor,
+        selectedItemColor: kcPrimaryColor,
         unselectedItemColor: kcLightGrey,
       ),
     );

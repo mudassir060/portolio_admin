@@ -38,8 +38,7 @@ class Roundbutton extends StackedView<RoundbuttonModel> {
                 )
               : Text(
                   title,
-                  style: const TextStyle(
-                      color:kcVeryLightGrey),
+                  style: const TextStyle(color: kcVeryLightGrey),
                 ),
         ),
       ),

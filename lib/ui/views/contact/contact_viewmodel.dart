@@ -7,5 +7,4 @@ class ContactViewModel extends BaseViewModel {
   TextEditingController linkdinctrl = TextEditingController();
   TextEditingController githubctrl = TextEditingController();
   TextEditingController contactctrl = TextEditingController();
-  
 }
