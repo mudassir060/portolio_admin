@@ -15,7 +15,6 @@ class DescriptionViewModel extends BaseViewModel {
   bool loading1 = false;
   String id = DateTime.now().millisecondsSinceEpoch.toString();
 
-  final fireStore = FirebaseFirestore.instance.collection("Description");
 
   void setvalue(bool loading) {
     loading1 = loading;
@@ -33,10 +32,8 @@ class DescriptionViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  final FireStore =
+  final descriptionStream =
       FirebaseFirestore.instance.collection("Description").snapshots();
-  CollectionReference ref =
-      FirebaseFirestore.instance.collection("Description");
 
   // Future<void> uploadData(String id) async {
   //   setvalue(true);

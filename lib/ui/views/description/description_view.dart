@@ -17,11 +17,12 @@ class DescriptionView extends StackedView<DescriptionViewModel> {
           title: const Center(child: Text("Title page")),
         ),
         body: StreamBuilder(
-            stream: viewModel.FireStore,
+            stream: viewModel.descriptionStream,
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               final document = snapshot.data!.docs.first;
               final data = document.data() as Map<String, dynamic>;
+             
 
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();

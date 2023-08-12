@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:portolio_admin/services/toastmessage_service.dart';
 
@@ -12,10 +13,11 @@ class TitlePageService {
         .ref("/mypic/${DateTime.now().millisecondsSinceEpoch}");
     firebase_storage.UploadTask uploadTask =
         ref.putFile(viewModel.image!.absolute);
+  final fireStore = FirebaseFirestore.instance.collection("Description");
 
     await Future.value(uploadTask).then((value) async {
       var newUrl = await ref.getDownloadURL();
-      await viewModel.fireStore.doc(id).set({
+      await fireStore.doc("id").set({
         "title": titlectrl.text.toString(),
         "decription": descCtrl.text.toString(),
         "About": descCtrl.text.toString(),
