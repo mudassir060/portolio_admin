@@ -4,8 +4,10 @@ import 'package:portolio_admin/ui/views/description/body.dart';
 import 'package:stacked/stacked.dart';
 import 'description_viewmodel.dart';
 
+
 class DescriptionView extends StackedView<DescriptionViewModel> {
   const DescriptionView({Key? key}) : super(key: key);
+
   @override
   Widget builder(
     BuildContext context,
@@ -13,34 +15,34 @@ class DescriptionView extends StackedView<DescriptionViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Center(child: Text("Title page")),
-        ),
-        body: StreamBuilder(
-            stream: viewModel.descriptionStream,
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              final document = snapshot.data!.docs.first;
-              final data = document.data() as Map<String, dynamic>;
-             
+      appBar: AppBar(
+        title: const Center(child: Text("Title page")),
+      ),
+      body: StreamBuilder(
+        stream: viewModel.descriptionStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          }
 
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              }
+          if (snapshot.hasError) {
+            return const Text("Some error");
+          }
 
-              if (snapshot.hasError) {
-                return const Text("some error");
-              }
-              // if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-              //   return const Text("No data available");
-              // }
-              return DescriptionBodyView(data: data);
-            }));
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const DescriptionBodyView(data: {});
+          }
+
+          final document = snapshot.data!.docs.first;
+          final data = document.data() as Map<String, dynamic>;
+
+          return DescriptionBodyView(data: data); // If you want an empty container here
+        },
+      ),
+    );
   }
 
   @override
-  DescriptionViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  DescriptionViewModel viewModelBuilder(BuildContext context) =>
       DescriptionViewModel();
 }
