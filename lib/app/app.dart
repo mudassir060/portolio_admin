@@ -16,6 +16,11 @@ import 'package:portolio_admin/ui/views/add_certificate/add_certificate_view.dar
 import 'package:portolio_admin/ui/views/contact/contact_view.dart';
 import 'package:portolio_admin/services/toastmessage_service.dart';
 import 'package:portolio_admin/ui/views/add_skills/add_skills_view.dart';
+import 'package:portolio_admin/services/title_page_service.dart';
+import 'package:portolio_admin/services/skill_page_service.dart';
+import 'package:portolio_admin/services/project_service.dart';
+import 'package:portolio_admin/services/add_certificate_service.dart';
+import 'package:portolio_admin/services/contact_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -40,6 +45,11 @@ import 'package:portolio_admin/ui/views/add_skills/add_skills_view.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: ToastmessageService),
+    LazySingleton(classType: TitlePageService),
+    LazySingleton(classType: SkillPageService),
+    LazySingleton(classType: ProjectService),
+    LazySingleton(classType: AddCertificateService),
+    LazySingleton(classType: ContactService),
 // @stacked-service
   ],
   bottomsheets: [

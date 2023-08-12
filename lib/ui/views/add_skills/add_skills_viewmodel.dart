@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
 
 class AddSkillsViewModel extends BaseViewModel {
-   final skillctrl = TextEditingController();
+  final skillctrl = TextEditingController();
   double slideValue = 0;
   final fireStore = FirebaseFirestore.instance.collection("Skills");
-  bool loading = false;
+  bool loading1 = false;
 
   void setvalue(bool loading) {
-    loading = loading;
+    loading1 = loading;
     notifyListeners();
   }
 

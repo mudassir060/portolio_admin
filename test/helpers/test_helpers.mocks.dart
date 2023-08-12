@@ -8,7 +8,20 @@ import 'dart:ui' as _i5;
 
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:portolio_admin/services/add_certificate_service.dart' as _i13;
+import 'package:portolio_admin/services/contact_service.dart' as _i15;
+import 'package:portolio_admin/services/project_service.dart' as _i11;
+import 'package:portolio_admin/services/skill_page_service.dart' as _i9;
+import 'package:portolio_admin/services/title_page_service.dart' as _i7;
 import 'package:portolio_admin/services/toastmessage_service.dart' as _i6;
+import 'package:portolio_admin/ui/views/add_certificate/add_certificate_viewmodel.dart'
+    as _i14;
+import 'package:portolio_admin/ui/views/add_projects/add_projects_viewmodel.dart'
+    as _i12;
+import 'package:portolio_admin/ui/views/add_skills/add_skills_viewmodel.dart'
+    as _i10;
+import 'package:portolio_admin/ui/views/description/description_viewmodel.dart'
+    as _i8;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -643,3 +656,123 @@ class MockToastmessageService extends _i1.Mock
         returnValueForMissingStub: null,
       );
 }
+
+/// A class which mocks [TitlePageService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTitlePageService extends _i1.Mock implements _i7.TitlePageService {
+  @override
+  _i4.Future<void> uploadDescription(
+    _i8.DescriptionViewModel? viewModel,
+    String? id,
+    dynamic titlectrl,
+    dynamic descCtrl,
+    dynamic aboutctrl,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadDescription,
+          [
+            viewModel,
+            id,
+            titlectrl,
+            descCtrl,
+            aboutctrl,
+          ],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
+/// A class which mocks [SkillPageService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSkillPageService extends _i1.Mock implements _i9.SkillPageService {
+  @override
+  _i4.Future<void> uploadDataFirestore(
+    String? id,
+    dynamic skillctrl,
+    dynamic slideValue,
+    _i10.AddSkillsViewModel? viewModel,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadDataFirestore,
+          [
+            id,
+            skillctrl,
+            slideValue,
+            viewModel,
+          ],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
+/// A class which mocks [ProjectService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockProjectService extends _i1.Mock implements _i11.ProjectService {
+  @override
+  _i4.Future<void> uploadProject(
+    _i12.AddProjectsViewModel? viewModel,
+    String? id,
+    dynamic titlectrl,
+    dynamic descCtrl,
+    dynamic datectrl,
+    dynamic linkctrl,
+    dynamic gitctrl,
+    dynamic youtubectrl,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadProject,
+          [
+            viewModel,
+            id,
+            titlectrl,
+            descCtrl,
+            datectrl,
+            linkctrl,
+            gitctrl,
+            youtubectrl,
+          ],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
+/// A class which mocks [AddCertificateService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAddCertificateService extends _i1.Mock
+    implements _i13.AddCertificateService {
+  @override
+  _i4.Future<void> uploadCertificate(
+    _i14.ADDcertificateViewModel? viewModel,
+    String? id,
+    dynamic titlectrl,
+    dynamic descCtrl,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadCertificate,
+          [
+            viewModel,
+            id,
+            titlectrl,
+            descCtrl,
+          ],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
+/// A class which mocks [ContactService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockContactService extends _i1.Mock implements _i15.ContactService {}

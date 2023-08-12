@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
@@ -7,12 +8,11 @@ import 'package:stacked/stacked.dart';
 class AddProjectsViewModel extends BaseViewModel {
   File? image;
   final picker = ImagePicker();
-  bool loading = false;
+  bool loading1 = false;
   TextEditingController titlectrl = TextEditingController();
   TextEditingController descCtrl = TextEditingController();
   TextEditingController datectrl = TextEditingController();
   TextEditingController linkctrl = TextEditingController();
-  TextEditingController projectctrl = TextEditingController();
   TextEditingController youtubectrl = TextEditingController();
   TextEditingController gitctrl = TextEditingController();
 
@@ -24,6 +24,13 @@ class AddProjectsViewModel extends BaseViewModel {
     } else {
       print("file not picked");
     }
+    notifyListeners();
+  }
+
+  final fireStore = FirebaseFirestore.instance.collection("Projects");
+
+  void setvalue(bool loading) {
+    loading1 = loading;
     notifyListeners();
   }
 }

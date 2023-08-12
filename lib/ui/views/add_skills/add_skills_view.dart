@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../../services/toastmessage_service.dart';
+import '../../../services/skill_page_service.dart';
 import '../../common/ui_helpers.dart';
 import '../../widgets/common/mytextfield/mytextfield.dart';
 import '../../widgets/common/roundbutton/roundbutton.dart';
@@ -17,6 +16,10 @@ class AddSkillsView extends StackedView<AddSkillsViewModel> {
     Widget? child,
   ) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 176, 213, 243),
+        title: const Center(child: Text("ADD SKILLS")),
+      ),
       body: SizedBox(
         height: 500,
         child: Padding(
@@ -24,10 +27,6 @@ class AddSkillsView extends StackedView<AddSkillsViewModel> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                AppBar(
-                  backgroundColor: const Color.fromARGB(255, 176, 213, 243),
-                  title: const Center(child: Text("ADD SKILLS")),
-                ),
                 verticalSpaceMassive,
                 Mytextfield(
                   title: "SKILL",
@@ -45,26 +44,12 @@ class AddSkillsView extends StackedView<AddSkillsViewModel> {
                 verticalSpaceMedium,
                 Roundbutton(
                   title: "ADD",
-                  loading: viewModel.loading,
-                  onTap: () async {
-                    viewModel.setvalue(true);
+                  loading: viewModel.loading1,
+                  onTap: () {
                     String id =
                         DateTime.now().millisecondsSinceEpoch.toString();
-
-                    await viewModel.fireStore.doc(id).set({
-                      "skill_name": viewModel.skillctrl.text.toString(),
-                      "slider value": viewModel.slideValue.toStringAsFixed(2),
-                      "ID": id,
-                    }).then((value) {
-                      ToastmessageService()
-                          .toastmessage("Successful data uploaded");
-
-                      viewModel.setvalue(false);
-                    }).onError((error, stackTrace) {
-                      ToastmessageService().toastmessage(error.toString());
-
-                      viewModel.setvalue(false);
-                    });
+                    SkillPageService().uploadDataFirestore(id,
+                        viewModel.skillctrl, viewModel.slideValue, viewModel);
                   },
                 ),
               ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../common/images.dart';
+import '../../bottom_sheets/notice/images.dart';
 
 import 'Widget/achivement.dart';
 import 'certificate_viewmodel.dart';

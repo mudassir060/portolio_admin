@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
+import '../../../services/add_certificate_service.dart';
 import '../../common/app_colors.dart';
 import '../../widgets/common/mytextfield/mytextfield.dart';
 import '../../widgets/common/roundbutton/roundbutton.dart';
@@ -52,7 +53,19 @@ class ADDcertificateView extends StackedView<ADDcertificateViewModel> {
                 ctrl: viewModel.descCtrl,
               ),
               verticalSpaceLarge,
-              Roundbutton(title: "ADD", onTap: () {})
+              Roundbutton(
+                  title: "ADD",
+                  loading: viewModel.loading1,
+                  onTap: () async {
+                    String id =
+                        DateTime.now().millisecondsSinceEpoch.toString();
+                    AddCertificateService().uploadCertificate(
+                      viewModel,
+                      id,
+                      viewModel.titlectrl,
+                      viewModel.descCtrl,
+                    );
+                  })
             ],
           ),
         ),

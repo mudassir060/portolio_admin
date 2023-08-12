@@ -27,3 +27,4 @@ const String net = 'assets/images/network.jpg';
 const String ph = 'assets/images/phone.png';
 const String home_ = 'assets/images/home_page.png';
 const String photo = 'assets/images/photo.png';
+const String image = 'assets/images/imageicon.png';

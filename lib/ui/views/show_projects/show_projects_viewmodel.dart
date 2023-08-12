@@ -1,5 +1,5 @@
 import 'package:portolio_admin/app/app.locator.dart';
-import 'package:portolio_admin/ui/common/images.dart';
+import 'package:portolio_admin/ui/bottom_sheets/notice/images.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

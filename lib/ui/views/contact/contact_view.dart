@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../services/contact_service.dart';
 import '../../widgets/common/mytextfield/mytextfield.dart';
 import '../../widgets/common/roundbutton/roundbutton.dart';
 import 'contact_viewmodel.dart';
@@ -50,7 +51,21 @@ class ContactView extends StackedView<ContactViewModel> {
                 ctrl: viewModel.linkdinctrl,
               ),
               verticalSpaceLarge,
-              Roundbutton(title: "UPDATE", onTap: () {})
+              Roundbutton(
+                  title: "UPDATE",
+                  loading: viewModel.loading1,
+                  onTap: () async {
+                    String id =
+                        DateTime.now().millisecondsSinceEpoch.toString();
+                    ContactService().contact(
+                        viewModel,
+                        id,
+                        viewModel.emailctrl,
+                        viewModel.facebookCtrl,
+                        viewModel.linkdinctrl,
+                        viewModel.githubctrl,
+                        viewModel.contactctrl);
+                  })
             ],
           ),
         ),

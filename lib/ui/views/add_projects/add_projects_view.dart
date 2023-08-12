@@ -4,6 +4,7 @@ import 'package:portolio_admin/ui/widgets/common/mytextfield/mytextfield.dart';
 import 'package:portolio_admin/ui/widgets/common/roundbutton/roundbutton.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../services/project_service.dart';
 import '../../common/app_colors.dart';
 import 'add_projects_viewmodel.dart';
 
@@ -73,7 +74,22 @@ class AddProjectsView extends StackedView<AddProjectsViewModel> {
                 ctrl: viewModel.youtubectrl,
               ),
               verticalSpaceLarge,
-              Roundbutton(title: "ADD", onTap: () {})
+              Roundbutton(
+                  title: "ADD",
+                  loading: viewModel.loading1,
+                  onTap: () async {
+                    String id =
+                        DateTime.now().millisecondsSinceEpoch.toString();
+                    ProjectService().uploadProject(
+                        viewModel,
+                        id,
+                        viewModel.titlectrl,
+                        viewModel.descCtrl,
+                        viewModel.datectrl,
+                        viewModel.linkctrl,
+                        viewModel.gitctrl,
+                        viewModel.youtubectrl);
+                  })
             ],
           ),
         ),
