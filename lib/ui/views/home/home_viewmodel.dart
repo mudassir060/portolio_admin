@@ -3,6 +3,7 @@ import 'package:portolio_admin/ui/views/description/description_view.dart';
 import 'package:stacked/stacked.dart';
 
 import '../contact/contact_view.dart';
+import '../contact/streambody.dart';
 import '../show_projects/show_projects_view.dart';
 import '../show_skills/show_skills_view.dart';
 import '../showcertificate/showcertificate_view.dart';
@@ -29,7 +30,7 @@ class HomeViewModel extends BaseViewModel {
       case 3:
         return const ShowcertificateView();
       case 4:
-        return const ContactView();
+        return const Streambody();
 
       default:
         return Container();

@@ -13,7 +13,7 @@ class ContactService {
     contactctrl,
   ) async {
     viewModel.setvalue(true);
-    await viewModel.fireStore.doc(id).set({
+    await viewModel.fireStore.doc("id").set({
       "Email": emailctrl.text.toString(),
       "ContactNo": contactctrl.text.toString(),
       "Facebook link": facebookCtrl.text.toString(),

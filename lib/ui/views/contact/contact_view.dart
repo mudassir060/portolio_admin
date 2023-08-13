@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../services/contact_service.dart';
 import '../../widgets/common/mytextfield/mytextfield.dart';
 import '../../widgets/common/roundbutton/roundbutton.dart';
 import 'contact_viewmodel.dart';
 
 class ContactView extends StackedView<ContactViewModel> {
-  const ContactView({Key? key}) : super(key: key);
+  final data;
+  const ContactView({Key? key, this.data}) : super(key: key);
+  @override
+  void onViewModelReady(ContactViewModel viewModel) {
+
+    viewModel.emailctrl.text = data['Email']??"";
+    viewModel.facebookCtrl.text = data['Facebook link']?? "";
+    viewModel.linkdinctrl.text = data['Linkdin link']?? "";
+    viewModel.githubctrl.text = data['Github link']?? "";
+    viewModel.contactctrl.text = data['ContactNo']?? "";
+
+    super.onViewModelReady(viewModel);
+  }
 
   @override
   Widget builder(
@@ -16,6 +27,7 @@ class ContactView extends StackedView<ContactViewModel> {
     ContactViewModel viewModel,
     Widget? child,
   ) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Contact details"),
@@ -32,7 +44,7 @@ class ContactView extends StackedView<ContactViewModel> {
               ),
               verticalSpaceSmall,
               Mytextfield(
-                title: "Contact No",
+                title: "ContactNo",
                 ctrl: viewModel.contactctrl,
               ),
               verticalSpaceSmall,
@@ -54,7 +66,7 @@ class ContactView extends StackedView<ContactViewModel> {
               Roundbutton(
                   title: "UPDATE",
                   loading: viewModel.loading1,
-                  onTap: () async {
+                  onTap: () async{
                     String id =
                         DateTime.now().millisecondsSinceEpoch.toString();
                     ContactService().contact(

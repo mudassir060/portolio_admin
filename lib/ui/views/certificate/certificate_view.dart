@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../bottom_sheets/notice/images.dart';
-
 import 'Widget/achivement.dart';
+import 'Widget/pdfwidget.dart';
 import 'certificate_viewmodel.dart';
+
 
 class CertificateView extends StackedView<CertificateViewModel> {
   const CertificateView({Key? key}) : super(key: key);
@@ -17,12 +17,14 @@ class CertificateView extends StackedView<CertificateViewModel> {
     Widget? child,
   ) {
     void navigateToPDFScreen(BuildContext context, String cerName) {
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => PDFScreen(pdfAssetPath: cerName),
-      //   ),
-      // );
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PDFScreen(pdfAssetPath: cerName),
+        ),
+      );
+
     }
 
     return Column(

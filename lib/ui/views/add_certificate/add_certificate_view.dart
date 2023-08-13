@@ -27,7 +27,10 @@ class ADDcertificateView extends StackedView<ADDcertificateViewModel> {
           child: Column(
             children: [
               verticalSpaceMassive,
-              InkWell(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                   InkWell(
                 onTap: () {
                   viewModel.getImageGallary();
                 },
@@ -42,6 +45,26 @@ class ADDcertificateView extends StackedView<ADDcertificateViewModel> {
                       : const Icon(Icons.image),
                 ),
               ),
+
+                InkWell(
+                onTap: () {
+                  viewModel.getImageGallary();
+                },
+                child: Container(
+                  height: 150,
+                  width: 150,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: kcDarkGreyColor)),
+                  child: viewModel.image != null
+                      ? Image.file(viewModel.image!.absolute)
+                      : const Icon(Icons.image),
+                ),
+              ),
+
+                ],
+              ),
+             
               verticalSpaceMedium,
               Mytextfield(
                 title: "Title",
