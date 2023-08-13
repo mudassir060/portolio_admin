@@ -19,13 +19,13 @@ class ProjectsView extends StackedView<ProjectsViewModel> {
         Center(
           child: Stack(children: [
             Container(
-              //height: 200,
+              height: 300,
               width: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image(
-                image: AssetImage(image1),
+                image: NetworkImage(image1),
                 fit: BoxFit.cover,
               ),
             ),

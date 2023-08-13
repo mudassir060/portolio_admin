@@ -36,7 +36,7 @@ class DescriptionView extends StackedView<DescriptionViewModel> {
           final document = snapshot.data!.docs.first;
           final data = document.data() as Map<String, dynamic>;
 
-          return DescriptionBodyView(data: data); // If you want an empty container here
+          return DescriptionBodyView(data: data); 
         },
       ),
     );

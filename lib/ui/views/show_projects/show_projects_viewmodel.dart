@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:portolio_admin/app/app.locator.dart';
 import 'package:portolio_admin/ui/bottom_sheets/notice/images.dart';
 import 'package:stacked/stacked.dart';
@@ -7,4 +8,6 @@ class ShowProjectsViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
 
   final project = [system, std, school_, bird, hostel_, vehicle_, Go, app];
+  final projectStream =
+      FirebaseFirestore.instance.collection("Projects").snapshots();
 }
