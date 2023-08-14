@@ -67,16 +67,7 @@ class _SkillviewState extends State<Skillview>
       children: [
         VisibilityDetector(
           key: Key(widget.label ?? ''),
-          onVisibilityChanged: (visibilityInfo) {
-            setState(() {
-              viewModel.isVisible = visibilityInfo.visibleFraction > 0.5;
-              if (viewModel.isVisible) {
-                viewModel.animationController.forward();
-              } else {
-                viewModel.animationController.reverse();
-              }
-            });
-          },
+          onVisibilityChanged: viewModel.visiblestate,
           child: SizedBox(
             width: 400,
             child: Column(
