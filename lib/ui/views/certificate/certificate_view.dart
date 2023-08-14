@@ -13,41 +13,33 @@ class CertificateView extends StackedView<CertificateViewModel> {
     CertificateViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: StreamBuilder(
-          stream: viewModel.certificatestream,
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            }
+    return StreamBuilder(
+        stream: viewModel.certificatestream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-            if (snapshot.hasError) return const Text("some error");
+          if (snapshot.hasError) {
+            return Center(child: Text(snapshot.error.toString()));
+          }
 
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  ListView.builder(
-                    // shrinkWrap: true,
-                    // physics: const NeverScrollableScrollPhysics(),
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GestureDetector(
-                          onTap: () => viewModel.navigateToPDFScreen(
-                              context, snapshot.data!.docs[index]['pdf']),
-                          child: achiv(snapshot.data!.docs[index]['image']),
-                        ),
-                      );
-                    },
-                  ),
-                  //verticalSpaceSmall
-                ],
-              ),
-            );
-          }),
-    );
+          return ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () => viewModel.navigateToPDFScreen(
+                      context, snapshot.data!.docs[index]['pdf']),
+                  child: achiv(snapshot.data!.docs[index]['image']),
+                ),
+              );
+            },
+          );
+        });
   }
 
   @override
