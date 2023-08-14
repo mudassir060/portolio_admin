@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
-import '../../bottom_sheets/notice/images.dart';
 import 'Widget/achivement.dart';
 import 'certificate_viewmodel.dart';
-
 
 class CertificateView extends StackedView<CertificateViewModel> {
   const CertificateView({Key? key}) : super(key: key);
@@ -15,35 +12,24 @@ class CertificateView extends StackedView<CertificateViewModel> {
     CertificateViewModel viewModel,
     Widget? child,
   ) {
-  
-
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () =>viewModel.navigateToPDFScreen(context, certificate1),
-          child: achiv(kic),
-        ),
-        verticalSpaceMedium,
-        GestureDetector(
-          onTap: () => viewModel.navigateToPDFScreen(context, certificate2),
-          child: achiv(ite),
-        ),
-        verticalSpaceMedium,
-        GestureDetector(
-          onTap: () => viewModel.navigateToPDFScreen(context, certificate3),
-          child: achiv(comp),
-        ),
-        verticalSpaceMedium,
-        GestureDetector(
-          onTap: () => viewModel.navigateToPDFScreen(context, certificate4),
-          child: achiv(char),
-        ),
-        verticalSpaceMedium,
-        GestureDetector(
-          onTap: () => viewModel.navigateToPDFScreen(context, certificate5),
-          child: achiv(arsh),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ListView.builder(
+            shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+            itemCount: viewModel.certificatedata.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () => viewModel.navigateToPDFScreen(
+                    context, viewModel.certificatedata[index]),
+                child: achiv(viewModel.imagedata[
+                    index]), 
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 
