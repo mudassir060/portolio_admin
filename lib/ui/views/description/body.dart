@@ -45,7 +45,6 @@ class DescriptionBodyView extends StackedView<DescriptionViewModel> {
                         ? DecorationImage(
                             image: NetworkImage(data['image']),
                             fit: BoxFit.cover,
-                            
                           )
                         : const DecorationImage(image: AssetImage(image)),
                   ),

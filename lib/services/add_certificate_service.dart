@@ -10,23 +10,37 @@ class AddCertificateService {
 
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
         .ref("/mypic/${DateTime.now().millisecondsSinceEpoch}");
-    firebase_storage.UploadTask uploadTask =
+
+    firebase_storage.Reference pdfRef = firebase_storage.FirebaseStorage.instance
+        .ref("/pdfs/${DateTime.now().millisecondsSinceEpoch}");
+
+    firebase_storage.UploadTask imageUploadTask =
         ref.putFile(viewModel.image!.absolute);
 
-    await Future.value(uploadTask).then((value) async {
-      var newUrl = await ref.getDownloadURL();
+    firebase_storage.UploadTask pdfUploadTask =
+        pdfRef.putFile(viewModel.pdfFile!.absolute);
+
+    // Wait for both image and PDF uploads to complete
+    await Future.wait([imageUploadTask, pdfUploadTask]).then((uploadTasks) async {
+      var imageUrl = await ref.getDownloadURL();
+      var pdfUrl = await pdfRef.getDownloadURL();
+
       await viewModel.fireStore.doc(id).set({
         "title": titlectrl.text.toString(),
         "decription": descCtrl.text.toString(),
         "ID": id,
-        "image": newUrl.toString()
+        "image": imageUrl.toString(),
+        "pdf": pdfUrl.toString(),
       }).then((value) {
-        ToastmessageService().toastmessage("Sucsessful data uploaded");
+        ToastmessageService().toastmessage("Successful data uploaded");
         viewModel.setvalue(false);
-      }).onError((error, stackTrace) {
-        ToastmessageService().toastmessage(error.toString());
+      }).catchError((error) {
+        ToastmessageService().toastmessage("Error uploading data: $error");
         viewModel.setvalue(false);
       });
+    }).catchError((error) {
+      ToastmessageService().toastmessage("Error uploading files: $error");
+      viewModel.setvalue(false);
     });
   }
 }
