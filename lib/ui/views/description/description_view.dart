@@ -4,7 +4,6 @@ import 'package:portolio_admin/ui/views/description/body.dart';
 import 'package:stacked/stacked.dart';
 import 'description_viewmodel.dart';
 
-
 class DescriptionView extends StackedView<DescriptionViewModel> {
   const DescriptionView({Key? key}) : super(key: key);
 
@@ -36,7 +35,7 @@ class DescriptionView extends StackedView<DescriptionViewModel> {
           final document = snapshot.data!.docs.first;
           final data = document.data() as Map<String, dynamic>;
 
-          return DescriptionBodyView(data: data); 
+          return DescriptionBodyView(data: data);
         },
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'Widget/achivement.dart';
 import 'certificate_viewmodel.dart';
@@ -29,8 +28,8 @@ class CertificateView extends StackedView<CertificateViewModel> {
               child: Column(
                 children: [
                   ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    // shrinkWrap: true,
+                    // physics: const NeverScrollableScrollPhysics(),
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       return Padding(

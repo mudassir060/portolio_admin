@@ -5,7 +5,6 @@ import 'contact_view.dart';
 import 'contact_viewmodel.dart';
 
 class Streambody extends StackedView<ContactViewModel> {
-  
   const Streambody({Key? key}) : super(key: key);
 
   @override
@@ -32,13 +31,13 @@ class Streambody extends StackedView<ContactViewModel> {
 
           final document = snapshot.data!.docs.first;
           final data = document.data() as Map<String, dynamic>;
-        
 
-          return ContactView(data:data);
+          return ContactView(data: data);
         },
       ),
     );
   }
+
   @override
   ContactViewModel viewModelBuilder(
     BuildContext context,

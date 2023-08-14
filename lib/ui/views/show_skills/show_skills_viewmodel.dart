@@ -5,7 +5,6 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ShowSkillsViewModel extends BaseViewModel {
   final navigationService = locator<NavigationService>();
-final SkillsStream =
+  final SkillsStream =
       FirebaseFirestore.instance.collection("Skills").snapshots();
-
 }

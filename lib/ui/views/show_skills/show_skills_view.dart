@@ -21,12 +21,13 @@ class ShowSkillsView extends StackedView<ShowSkillsViewModel> {
       ),
       body: StreamBuilder(
           stream: viewModel.SkillsStream,
-          builder:(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-             if (snapshot.connectionState == ConnectionState.waiting) {
-               return const CircularProgressIndicator();
-             }
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
 
-              if (snapshot.hasError) return const Text("some error");
+            if (snapshot.hasError) return const Text("some error");
 
             return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
@@ -36,8 +37,10 @@ class ShowSkillsView extends StackedView<ShowSkillsViewModel> {
                     child: Column(
                       children: [
                         Skillview(
-                            percentage: double.parse(snapshot.data!.docs[index]['slider value']),
-                            label: snapshot.data!.docs[index]['skill_name'].toString()),
+                            percentage: double.parse(
+                                snapshot.data!.docs[index]['slider value']),
+                            label: snapshot.data!.docs[index]['skill_name']
+                                .toString()),
                         verticalSpaceSmall
                       ],
                     ),

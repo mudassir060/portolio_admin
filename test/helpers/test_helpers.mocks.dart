@@ -20,6 +20,7 @@ import 'package:portolio_admin/ui/views/add_projects/add_projects_viewmodel.dart
     as _i12;
 import 'package:portolio_admin/ui/views/add_skills/add_skills_viewmodel.dart'
     as _i10;
+import 'package:portolio_admin/ui/views/contact/contact_viewmodel.dart' as _i16;
 import 'package:portolio_admin/ui/views/description/description_viewmodel.dart'
     as _i8;
 import 'package:stacked_services/stacked_services.dart' as _i2;
@@ -775,4 +776,31 @@ class MockAddCertificateService extends _i1.Mock
 /// A class which mocks [ContactService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockContactService extends _i1.Mock implements _i15.ContactService {}
+class MockContactService extends _i1.Mock implements _i15.ContactService {
+  @override
+  _i4.Future<void> contact(
+    _i16.ContactViewModel? viewModel,
+    String? id,
+    dynamic emailctrl,
+    dynamic facebookCtrl,
+    dynamic linkdinctrl,
+    dynamic githubctrl,
+    dynamic contactctrl,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #contact,
+          [
+            viewModel,
+            id,
+            emailctrl,
+            facebookCtrl,
+            linkdinctrl,
+            githubctrl,
+            contactctrl,
+          ],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}

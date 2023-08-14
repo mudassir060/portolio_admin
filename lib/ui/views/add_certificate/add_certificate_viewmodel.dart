@@ -11,7 +11,7 @@ import '../../../services/add_certificate_service.dart';
 import '../../../services/toastmessage_service.dart';
 
 class ADDcertificateViewModel extends BaseViewModel {
-    final addCertificateService = locator<AddCertificateService>();
+  final addCertificateService = locator<AddCertificateService>();
 
   TextEditingController titlectrl = TextEditingController();
   TextEditingController descCtrl = TextEditingController();
@@ -50,7 +50,7 @@ class ADDcertificateViewModel extends BaseViewModel {
 
     if (pickedFile != null && pickedFile.files.isNotEmpty) {
       pdfFile = File(pickedFile.files.single.path!);
-      print("=====>${pdfFile}");//upload wala ha kaha  
+      print("=====>${pdfFile}"); //upload wala ha kaha
     } else {
       ToastmessageService().toastmessage("PDF file not picked");
     }

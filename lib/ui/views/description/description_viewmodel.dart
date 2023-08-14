@@ -38,9 +38,6 @@ class DescriptionViewModel extends BaseViewModel {
   // CollectionReference ref =
   //     FirebaseFirestore.instance.collection("Description");
 
-
-  
-
   // Future<void> uploadData(String id) async {
   //   setvalue(true);
 

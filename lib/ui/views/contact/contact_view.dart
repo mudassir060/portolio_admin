@@ -11,12 +11,11 @@ class ContactView extends StackedView<ContactViewModel> {
   const ContactView({Key? key, this.data}) : super(key: key);
   @override
   void onViewModelReady(ContactViewModel viewModel) {
-
-    viewModel.emailctrl.text = data['Email']??"";
-    viewModel.facebookCtrl.text = data['Facebook link']?? "";
-    viewModel.linkdinctrl.text = data['Linkdin link']?? "";
-    viewModel.githubctrl.text = data['Github link']?? "";
-    viewModel.contactctrl.text = data['ContactNo']?? "";
+    viewModel.emailctrl.text = data['Email'] ?? "";
+    viewModel.facebookCtrl.text = data['Facebook link'] ?? "";
+    viewModel.linkdinctrl.text = data['Linkdin link'] ?? "";
+    viewModel.githubctrl.text = data['Github link'] ?? "";
+    viewModel.contactctrl.text = data['ContactNo'] ?? "";
 
     super.onViewModelReady(viewModel);
   }
@@ -27,7 +26,6 @@ class ContactView extends StackedView<ContactViewModel> {
     ContactViewModel viewModel,
     Widget? child,
   ) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Contact details"),
@@ -66,7 +64,7 @@ class ContactView extends StackedView<ContactViewModel> {
               Roundbutton(
                   title: "UPDATE",
                   loading: viewModel.loading1,
-                  onTap: () async{
+                  onTap: () async {
                     String id =
                         DateTime.now().millisecondsSinceEpoch.toString();
                     ContactService().contact(

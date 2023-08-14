@@ -21,28 +21,29 @@ class ShowProjectsView extends StackedView<ShowProjectsViewModel> {
         title: const Text("Projects Page"),
       ),
       body: StreamBuilder(
-        stream: viewModel.projectStream,
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          stream: viewModel.projectStream,
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-               return const CircularProgressIndicator();
-             }
+              return const CircularProgressIndicator();
+            }
 
-              if (snapshot.hasError) return const Text("some error");
-          return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: ((context, index) {
-                return Padding(
-                  padding:  const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      ProjectsView(image1:snapshot.data!.docs[index]['image']),
-                      verticalSpaceSmall
-                    ],
-                  ),
-                );
-              }));
-        }
-      ),
+            if (snapshot.hasError) return const Text("some error");
+            return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: ((context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        ProjectsView(
+                            image1: snapshot.data!.docs[index]['image']),
+                        verticalSpaceSmall
+                      ],
+                    ),
+                  );
+                }));
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           viewModel.navigationService.navigateToAddProjectsView();

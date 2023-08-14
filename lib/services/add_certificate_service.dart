@@ -11,7 +11,8 @@ class AddCertificateService {
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
         .ref("/mypic/${DateTime.now().millisecondsSinceEpoch}");
 
-    firebase_storage.Reference pdfRef = firebase_storage.FirebaseStorage.instance
+    firebase_storage.Reference pdfRef = firebase_storage
+        .FirebaseStorage.instance
         .ref("/pdfs/${DateTime.now().millisecondsSinceEpoch}");
 
     firebase_storage.UploadTask imageUploadTask =
@@ -21,7 +22,8 @@ class AddCertificateService {
         pdfRef.putFile(viewModel.pdfFile!.absolute);
 
     // Wait for both image and PDF uploads to complete
-    await Future.wait([imageUploadTask, pdfUploadTask]).then((uploadTasks) async {
+    await Future.wait([imageUploadTask, pdfUploadTask])
+        .then((uploadTasks) async {
       var imageUrl = await ref.getDownloadURL();
       var pdfUrl = await pdfRef.getDownloadURL();
 

@@ -205,8 +205,11 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i13.ContactView: (data) {
+      final args = data.getArgs<ContactViewArguments>(
+        orElse: () => const ContactViewArguments(),
+      );
       return _i15.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i13.ContactView(),
+        builder: (context) => _i13.ContactView(key: args.key, data: args.data),
         settings: data,
       );
     },
@@ -280,6 +283,33 @@ class ProjectsViewArguments {
   @override
   int get hashCode {
     return key.hashCode ^ image1.hashCode;
+  }
+}
+
+class ContactViewArguments {
+  const ContactViewArguments({
+    this.key,
+    this.data,
+  });
+
+  final _i15.Key? key;
+
+  final dynamic data;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "data": "$data"}';
+  }
+
+  @override
+  bool operator ==(covariant ContactViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.data == data;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ data.hashCode;
   }
 }
 
@@ -446,14 +476,17 @@ extension NavigatorStateExtension on _i16.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToContactView([
+  Future<dynamic> navigateToContactView({
+    _i15.Key? key,
+    dynamic data,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.contactView,
+        arguments: ContactViewArguments(key: key, data: data),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -636,14 +669,17 @@ extension NavigatorStateExtension on _i16.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithContactView([
+  Future<dynamic> replaceWithContactView({
+    _i15.Key? key,
+    dynamic data,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.contactView,
+        arguments: ContactViewArguments(key: key, data: data),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

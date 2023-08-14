@@ -20,7 +20,6 @@ class AddSkillsView extends StackedView<AddSkillsViewModel> {
         backgroundColor: const Color.fromARGB(255, 176, 213, 243),
         title: const Center(child: Text("ADD SKILLS")),
       ),
-      
       body: SizedBox(
         height: 500,
         child: Padding(
@@ -37,7 +36,7 @@ class AddSkillsView extends StackedView<AddSkillsViewModel> {
                 Slider(
                   min: 0,
                   max: 1,
-                  value: viewModel.slideValue ,
+                  value: viewModel.slideValue,
                   onChanged: (value) {
                     viewModel.slidervalue(value);
                   },

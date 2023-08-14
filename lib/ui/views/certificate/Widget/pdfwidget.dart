@@ -12,4 +12,3 @@ class PDFScreen extends StatelessWidget {
     return SfPdfViewer.network(pdfAssetPath);
   }
 }
-
