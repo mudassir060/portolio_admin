@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../common/app_colors.dart';
@@ -14,7 +14,7 @@ Widget achiv(String name) {
           color: kcDarkGreyColor,
         ),
         child: Image(
-          image: AssetImage(name),
+          image: NetworkImage(name),
           fit: BoxFit.fill,
         ),
       ),

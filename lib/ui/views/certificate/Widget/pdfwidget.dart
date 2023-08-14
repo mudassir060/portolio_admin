@@ -9,15 +9,7 @@ class PDFScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SfPdfViewer.asset(pdfAssetPath);
+    return SfPdfViewer.network(pdfAssetPath);
   }
 }
 
-void navigateToPDFScreen(BuildContext context, String cerName) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => PDFScreen(pdfAssetPath: cerName),
-    ),
-  );
-}

@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'Widget/achivement.dart';
 import 'certificate_viewmodel.dart';
@@ -12,24 +14,40 @@ class CertificateView extends StackedView<CertificateViewModel> {
     CertificateViewModel viewModel,
     Widget? child,
   ) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-            itemCount: viewModel.certificatedata.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () => viewModel.navigateToPDFScreen(
-                    context, viewModel.certificatedata[index]),
-                child: achiv(viewModel.imagedata[
-                    index]), 
-              );
-            },
-          ),
-        ],
-      ),
+    return Scaffold(
+      body: StreamBuilder(
+          stream: viewModel.certificatestream,
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
+
+            if (snapshot.hasError) return const Text("some error");
+
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () => viewModel.navigateToPDFScreen(
+                              context, snapshot.data!.docs[index]['pdf']),
+                          child: achiv(snapshot.data!.docs[index]['image']),
+                        ),
+                      );
+                    },
+                  ),
+                  //verticalSpaceSmall
+                ],
+              ),
+            );
+          }),
     );
   }
 
