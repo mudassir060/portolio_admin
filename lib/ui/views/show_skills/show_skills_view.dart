@@ -37,10 +37,15 @@ class ShowSkillsView extends StackedView<ShowSkillsViewModel> {
                     child: Column(
                       children: [
                         Skillview(
-                            percentage: double.parse(
-                                snapshot.data!.docs[index]['slider value']),
-                            label: snapshot.data!.docs[index]['skill_name']
-                                .toString()),
+                          percentage: double.parse(snapshot
+                              .data!.docs[index]['slider value']
+                              .toString())
+                            ..toStringAsFixed(2),
+                          label: snapshot.data!.docs[index]['skill_name']
+                              .toString(),
+                          index: index,
+                          idvalue: snapshot.data!.docs[index]['ID'],
+                        ),
                         verticalSpaceSmall
                       ],
                     ),

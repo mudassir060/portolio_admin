@@ -20,9 +20,8 @@ class PDFScreen extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('Error loading PDF: ${snapshot.error}');
         } else if (snapshot.hasData) {
-
-         final pdfData = Uint8List.fromList(snapshot.data!);
-        return SfPdfViewer.memory(pdfData);
+          final pdfData = Uint8List.fromList(snapshot.data!);
+          return SfPdfViewer.memory(pdfData);
         } else {
           return const Text('No PDF data available.');
         }

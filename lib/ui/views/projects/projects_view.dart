@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:portolio_admin/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 
 import 'projects_viewmodel.dart';
 
 class ProjectsView extends StackedView<ProjectsViewModel> {
   final String image1;
+  final int index;
+  final String? title;
+  final String? description;
+  final String? date;
+  final String? applink;
+  final String? gitlink;
+  final String? youtubelink;
+  final String? id;
 
-  const ProjectsView({super.key, required this.image1});
+  const ProjectsView(
+      {super.key,
+      required this.image1,
+      required this.index,
+      required this.title,
+      required this.description,
+      required this.date,
+      required this.applink,
+      required this.gitlink,
+      required this.youtubelink,
+      required this.id});
 
   @override
   Widget builder(
@@ -32,6 +51,22 @@ class ProjectsView extends StackedView<ProjectsViewModel> {
             Positioned(
               left: 330,
               child: PopupMenuButton<int>(
+                onSelected: (value) {
+                  if (value == 1) {
+                    viewModel.setindex(index);
+                    viewModel.navigationService.navigateToEditprojectView(
+                        firestoreimage: image1,
+                        title: title,
+                        description: description,
+                        date: date,
+                        applink: applink,
+                        gitlink: gitlink,
+                        youtubelink: youtubelink,
+                        id: id,
+                        index:index
+                        );
+                  }
+                },
                 icon: const Icon(Icons.more_vert),
                 itemBuilder: (context) => [
                   const PopupMenuItem<int>(

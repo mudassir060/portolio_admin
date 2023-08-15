@@ -8,19 +8,15 @@ import 'dart:ui' as _i5;
 
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:portolio_admin/services/add_certificate_service.dart' as _i13;
-import 'package:portolio_admin/services/contact_service.dart' as _i15;
-import 'package:portolio_admin/services/project_service.dart' as _i11;
+import 'package:portolio_admin/services/add_certificate_service.dart' as _i11;
+import 'package:portolio_admin/services/contact_service.dart' as _i13;
+import 'package:portolio_admin/services/project_service.dart' as _i10;
 import 'package:portolio_admin/services/skill_page_service.dart' as _i9;
 import 'package:portolio_admin/services/title_page_service.dart' as _i7;
 import 'package:portolio_admin/services/toastmessage_service.dart' as _i6;
 import 'package:portolio_admin/ui/views/add_certificate/add_certificate_viewmodel.dart'
-    as _i14;
-import 'package:portolio_admin/ui/views/add_projects/add_projects_viewmodel.dart'
     as _i12;
-import 'package:portolio_admin/ui/views/add_skills/add_skills_viewmodel.dart'
-    as _i10;
-import 'package:portolio_admin/ui/views/contact/contact_viewmodel.dart' as _i16;
+import 'package:portolio_admin/ui/views/contact/contact_viewmodel.dart' as _i14;
 import 'package:portolio_admin/ui/views/description/description_viewmodel.dart'
     as _i8;
 import 'package:stacked_services/stacked_services.dart' as _i2;
@@ -695,7 +691,7 @@ class MockSkillPageService extends _i1.Mock implements _i9.SkillPageService {
     String? id,
     dynamic skillctrl,
     dynamic slideValue,
-    _i10.AddSkillsViewModel? viewModel,
+    dynamic viewModel,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -715,10 +711,10 @@ class MockSkillPageService extends _i1.Mock implements _i9.SkillPageService {
 /// A class which mocks [ProjectService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProjectService extends _i1.Mock implements _i11.ProjectService {
+class MockProjectService extends _i1.Mock implements _i10.ProjectService {
   @override
   _i4.Future<void> uploadProject(
-    _i12.AddProjectsViewModel? viewModel,
+    dynamic viewModel,
     String? id,
     dynamic titlectrl,
     dynamic descCtrl,
@@ -750,10 +746,10 @@ class MockProjectService extends _i1.Mock implements _i11.ProjectService {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAddCertificateService extends _i1.Mock
-    implements _i13.AddCertificateService {
+    implements _i11.AddCertificateService {
   @override
   _i4.Future<void> uploadCertificate(
-    _i14.ADDcertificateViewModel? viewModel,
+    _i12.ADDcertificateViewModel? viewModel,
     String? id,
     dynamic titlectrl,
     dynamic descCtrl,
@@ -776,10 +772,10 @@ class MockAddCertificateService extends _i1.Mock
 /// A class which mocks [ContactService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockContactService extends _i1.Mock implements _i15.ContactService {
+class MockContactService extends _i1.Mock implements _i13.ContactService {
   @override
   _i4.Future<void> contact(
-    _i16.ContactViewModel? viewModel,
+    _i14.ContactViewModel? viewModel,
     String? id,
     dynamic emailctrl,
     dynamic facebookCtrl,

@@ -37,7 +37,17 @@ class ShowProjectsView extends StackedView<ShowProjectsViewModel> {
                     child: Column(
                       children: [
                         ProjectsView(
-                            image1: snapshot.data!.docs[index]['image']),
+                            image1: snapshot.data!.docs[index]['image'],index:index,
+                            title:snapshot.data!.docs[index]['title'],
+                            description: snapshot.data!.docs[index]['decription'],
+                            date: snapshot.data!.docs[index]['Date'],
+                            applink: snapshot.data!.docs[index]['App link'],
+                            gitlink: snapshot.data!.docs[index]['Git link'],
+                            youtubelink: snapshot.data!.docs[index]['Youtube link'],
+
+                            id:snapshot.data!.docs[index]['ID']
+                            
+                            ),
                         verticalSpaceSmall
                       ],
                     ),
