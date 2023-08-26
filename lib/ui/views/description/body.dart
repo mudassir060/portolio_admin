@@ -72,7 +72,7 @@ class DescriptionBodyView extends StackedView<DescriptionViewModel> {
                 title: "Updated",
                 loading: viewModel.loading1,
                 onTap: () async {
-                  TitlePageService().uploadDescription(
+                  viewModel.titleService.uploadDescription(
                       viewModel,
                       viewModel.id,
                       viewModel.titlectrl,

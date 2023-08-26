@@ -5,7 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../app/app.locator.dart';
+import '../../../services/project_service.dart';
+
 class AddProjectsViewModel extends BaseViewModel {
+  final projectService = locator<ProjectService>();
   File? image;
   final picker = ImagePicker();
   bool loading1 = false;

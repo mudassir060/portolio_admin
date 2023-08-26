@@ -3,12 +3,16 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:portolio_admin/app/app.locator.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../services/title_page_service.dart';
 
 class DescriptionViewModel extends BaseViewModel {
   final TextEditingController titlectrl = TextEditingController();
   final TextEditingController decctrl = TextEditingController();
   final TextEditingController aboutctrl = TextEditingController();
+  final titleService = locator<TitlePageService>();
 
   File? image;
   final picker = ImagePicker();

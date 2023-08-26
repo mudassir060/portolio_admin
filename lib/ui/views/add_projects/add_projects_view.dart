@@ -78,7 +78,7 @@ class AddProjectsView extends StackedView<AddProjectsViewModel> {
                   title: "ADD",
                   loading: viewModel.loading1,
                   onTap: () async {
-                    ProjectService().saveOrUpdateProject(
+                   viewModel. projectService.saveOrUpdateProject(
                         viewModel,
                         null,
                         viewModel.titlectrl,

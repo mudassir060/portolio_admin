@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import '../../../services/skill_page_service.dart';
 import '../../common/ui_helpers.dart';
 import '../../widgets/common/mytextfield/mytextfield.dart';
 import '../../widgets/common/roundbutton/roundbutton.dart';
@@ -48,7 +47,7 @@ class AddSkillsView extends StackedView<AddSkillsViewModel> {
                   onTap: () {
                     String id =
                         DateTime.now().millisecondsSinceEpoch.toString();
-                    SkillPageService().uploadDataFirestore(id,
+                    viewModel.skillService.uploadDataFirestore(id,
                         viewModel.skillctrl, viewModel.slideValue, viewModel);
                   },
                 ),
