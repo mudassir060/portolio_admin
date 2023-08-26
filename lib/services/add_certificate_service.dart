@@ -1,11 +1,18 @@
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:portolio_admin/services/toastmessage_service.dart';
+import 'dart:developer';
 
-import '../ui/views/add_certificate/add_certificate_viewmodel.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:portolio_admin/services/toastmessage_service.dart';
 
 class AddCertificateService {
   Future<void> uploadCertificate(
-      ADDcertificateViewModel viewModel, String id, titlectrl, descCtrl) async {
+    viewModel,
+    String? id,
+    TextEditingController titlectrl,
+    TextEditingController descCtrl,
+    bool isUpdating,
+  ) async {
     viewModel.setvalue(true);
 
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
@@ -15,34 +22,74 @@ class AddCertificateService {
         .FirebaseStorage.instance
         .ref("/pdfs/${DateTime.now().millisecondsSinceEpoch}");
 
-    firebase_storage.UploadTask imageUploadTask =
-        ref.putFile(viewModel.image!.absolute);
+    firebase_storage.UploadTask? imageUploadTask;
+    firebase_storage.UploadTask? pdfUploadTask;
 
-    firebase_storage.UploadTask pdfUploadTask =
-        pdfRef.putFile(viewModel.pdfFile!.absolute);
+    if (viewModel.image != null) {
+      imageUploadTask = ref.putFile(viewModel.image!.absolute);
+    }
 
-    // Wait for both image and PDF uploads to complete
-    await Future.wait([imageUploadTask, pdfUploadTask])
-        .then((uploadTasks) async {
-      var imageUrl = await ref.getDownloadURL();
-      var pdfUrl = await pdfRef.getDownloadURL();
+    if (viewModel.pdfFile != null) {
+      pdfUploadTask = pdfRef.putFile(viewModel.pdfFile!.absolute);
+    }
 
-      await viewModel.fireStore.doc(id).set({
-        "title": titlectrl.text.toString(),
-        "decription": descCtrl.text.toString(),
-        "ID": id,
-        "image": imageUrl.toString(),
-        "pdf": pdfUrl.toString(),
-      }).then((value) {
-        ToastmessageService().toastmessage("Successful data uploaded");
-        viewModel.setvalue(false);
-      }).catchError((error) {
-        ToastmessageService().toastmessage("Error uploading data: $error");
-        viewModel.setvalue(false);
+    List<UploadTask> tasks = [];
+    if (imageUploadTask != null) {
+      tasks.add(imageUploadTask);
+    }
+    if (pdfUploadTask != null) {
+      tasks.add(pdfUploadTask);
+    }
+
+    try {
+      await Future.wait(tasks).then((uploadTasks) async {
+        var imageUrl =
+            viewModel.image != null ? await ref.getDownloadURL() : null;
+        var pdfUrl =
+            viewModel.pdfFile != null ? await pdfRef.getDownloadURL() : null;
+
+        Map<String, dynamic> certificateData = {
+          "title": titlectrl.text.toString(),
+          "decription": descCtrl.text.toString(),
+          "ID": id,
+        };
+
+        if (imageUrl != null) {
+          certificateData["image"] = imageUrl.toString();
+        }
+
+        if (pdfUrl != null) {
+          certificateData["pdf"] = pdfUrl.toString();
+        }
+
+        if (isUpdating) {
+          log("now enter in update certificate");
+          certificateData.removeWhere((key, value) => value == null || value.isEmpty);
+
+          await viewModel.fireStore
+              .doc(id)
+              .update(certificateData)
+              .then((value) {
+            ToastmessageService().toastmessage("Successful data updated");
+            viewModel.setvalue(false);
+          }).catchError((error) {
+            ToastmessageService().toastmessage("Error updating data: $error");
+            viewModel.setvalue(false);
+          });
+        } else {
+          await viewModel.fireStore.doc(id).set(certificateData).then((value) {
+            ToastmessageService().toastmessage("Successful data added");
+            viewModel.setvalue(false);
+          }).catchError((error) {
+            ToastmessageService().toastmessage("Error adding data: $error");
+            viewModel.setvalue(false);
+          });
+        }
       });
-    }).catchError((error) {
-      ToastmessageService().toastmessage("Error uploading files: $error");
+    } catch (error) {
+      //ToastmessageService().toastmessage("Error uploading files: $error");
+      log("Error uploading files: $error");
       viewModel.setvalue(false);
-    });
+    }
   }
 }

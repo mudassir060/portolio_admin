@@ -67,7 +67,6 @@ class EditskillView extends StackedView<EditskillViewModel> {
                       });
                     }
                     Navigator.pop(context);
-
                   },
                 ),
               ],

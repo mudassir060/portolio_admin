@@ -34,7 +34,7 @@ class CertificateView extends StackedView<CertificateViewModel> {
                 child: GestureDetector(
                   onTap: () => viewModel.navigateToPDFScreen(
                       context, snapshot.data!.docs[index]['pdf']),
-                  child: achiv(snapshot.data!.docs[index]['image']),
+                  child: achiv(snapshot.data!.docs[index]['image'],snapshot.data!.docs[index]['pdf'],snapshot.data!.docs[index]['decription'],snapshot.data!.docs[index]['title'],index,snapshot.data!.docs[index]['ID']),
                 ),
               );
             },

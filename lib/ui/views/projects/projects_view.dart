@@ -13,7 +13,7 @@ class ProjectsView extends StackedView<ProjectsViewModel> {
   final String? applink;
   final String? gitlink;
   final String? youtubelink;
-  final String? id;
+  final String id;
 
   const ProjectsView(
       {super.key,
@@ -33,6 +33,17 @@ class ProjectsView extends StackedView<ProjectsViewModel> {
     ProjectsViewModel viewModel,
     Widget? child,
   ) {
+    print("Image URL: $image1");
+    print("index:$index");
+    print("title:$title");
+    print("description:$description");
+    print("date:$date");
+    print("applink:$applink");
+    print("gitlink:$gitlink");
+    print("youtubelink:$youtubelink");
+    print("id:$id");
+
+    print("------we enter in  project view class");
     return Column(
       children: [
         Center(
@@ -63,8 +74,11 @@ class ProjectsView extends StackedView<ProjectsViewModel> {
                         gitlink: gitlink,
                         youtubelink: youtubelink,
                         id: id,
-                        index:index
-                        );
+                        index: index);
+                  }
+                  if (value == 2) {
+                    viewModel.setindex(index);
+                    viewModel.cref.doc(id).delete();
                   }
                 },
                 icon: const Icon(Icons.more_vert),

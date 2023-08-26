@@ -9,14 +9,12 @@ import 'dart:ui' as _i5;
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:portolio_admin/services/add_certificate_service.dart' as _i11;
-import 'package:portolio_admin/services/contact_service.dart' as _i13;
+import 'package:portolio_admin/services/contact_service.dart' as _i12;
 import 'package:portolio_admin/services/project_service.dart' as _i10;
 import 'package:portolio_admin/services/skill_page_service.dart' as _i9;
 import 'package:portolio_admin/services/title_page_service.dart' as _i7;
 import 'package:portolio_admin/services/toastmessage_service.dart' as _i6;
-import 'package:portolio_admin/ui/views/add_certificate/add_certificate_viewmodel.dart'
-    as _i12;
-import 'package:portolio_admin/ui/views/contact/contact_viewmodel.dart' as _i14;
+import 'package:portolio_admin/ui/views/contact/contact_viewmodel.dart' as _i13;
 import 'package:portolio_admin/ui/views/description/description_viewmodel.dart'
     as _i8;
 import 'package:stacked_services/stacked_services.dart' as _i2;
@@ -713,7 +711,7 @@ class MockSkillPageService extends _i1.Mock implements _i9.SkillPageService {
 /// See the documentation for Mockito's code generation for more information.
 class MockProjectService extends _i1.Mock implements _i10.ProjectService {
   @override
-  _i4.Future<void> uploadProject(
+  _i4.Future<void> saveOrUpdateProject(
     dynamic viewModel,
     String? id,
     dynamic titlectrl,
@@ -725,7 +723,7 @@ class MockProjectService extends _i1.Mock implements _i10.ProjectService {
   ) =>
       (super.noSuchMethod(
         Invocation.method(
-          #uploadProject,
+          #saveOrUpdateProject,
           [
             viewModel,
             id,
@@ -749,10 +747,11 @@ class MockAddCertificateService extends _i1.Mock
     implements _i11.AddCertificateService {
   @override
   _i4.Future<void> uploadCertificate(
-    _i12.ADDcertificateViewModel? viewModel,
+    dynamic viewModel,
     String? id,
-    dynamic titlectrl,
-    dynamic descCtrl,
+    _i3.TextEditingController? titlectrl,
+    _i3.TextEditingController? descCtrl,
+    bool? isUpdating,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -762,6 +761,7 @@ class MockAddCertificateService extends _i1.Mock
             id,
             titlectrl,
             descCtrl,
+            isUpdating,
           ],
         ),
         returnValue: _i4.Future<void>.value(),
@@ -772,10 +772,10 @@ class MockAddCertificateService extends _i1.Mock
 /// A class which mocks [ContactService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockContactService extends _i1.Mock implements _i13.ContactService {
+class MockContactService extends _i1.Mock implements _i12.ContactService {
   @override
   _i4.Future<void> contact(
-    _i14.ContactViewModel? viewModel,
+    _i13.ContactViewModel? viewModel,
     String? id,
     dynamic emailctrl,
     dynamic facebookCtrl,

@@ -1,26 +1,47 @@
+import 'dart:core';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+import 'package:portolio_admin/ui/common/app_colors.dart';
 import 'package:portolio_admin/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
-import '../../common/app_colors.dart';
+
 import '../../widgets/common/mytextfield/mytextfield.dart';
 import '../../widgets/common/roundbutton/roundbutton.dart';
-import 'add_certificate_viewmodel.dart';
 
-class ADDcertificateView extends StackedView<ADDcertificateViewModel> {
-  const ADDcertificateView({Key? key}) : super(key: key);
+import 'edit_certificate_viewmodel.dart';
+
+class EditCertificateView extends StackedView<EditCertificateViewModel> {
+  final String? certname;
+  final String? pdf;
+  final String? description;
+  final String? title;
+
+  final int index;
+  final String id;
+
+  const EditCertificateView(
+      {Key? key,
+      required this.certname,
+      required this.pdf,
+      required this.description,
+      required this.title,
+      required this.index,
+       required this. id,
+      
+      })
+      : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    ADDcertificateViewModel viewModel,
+    EditCertificateViewModel viewModel,
     Widget? child,
   ) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text("ADD Certificate")),
+        title: const Center(child: Text("Edit Certificate")),
         backgroundColor: kcPrimaryColor,
       ),
       body: Padding(
@@ -44,7 +65,7 @@ class ADDcertificateView extends StackedView<ADDcertificateViewModel> {
                           border: Border.all(color: kcDarkGreyColor)),
                       child: viewModel.image != null
                           ? Image.file(viewModel.image!.absolute)
-                          : const Icon(Icons.image),
+                          : Image(image: NetworkImage(certname!)),
                     ),
                   ),
                   InkWell(
@@ -52,47 +73,45 @@ class ADDcertificateView extends StackedView<ADDcertificateViewModel> {
                       viewModel.getPdfGallary();
                     },
                     child: Container(
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: kcDarkGreyColor),
-                      ),
-                      child: viewModel.pdfFile != null
-                          ? Icon(Icons.picture_as_pdf)
-                          : const Icon(Icons.image),
-                    ),
+                        height: 150,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: kcDarkGreyColor),
+                        ),
+                        child: viewModel.pdfFile != null
+                            ? const Center(child: Text(" pdf is picked"))
+                            : const Icon(Icons.picture_as_pdf)),
                   ),
                 ],
               ),
               verticalSpaceMedium,
               Mytextfield(
-                title: "Title",
+                title: title,
                 ctrl: viewModel.titlectrl,
               ),
               verticalSpaceSmall,
               Mytextfield(
-                title: "description",
+                title: description,
                 ctrl: viewModel.descCtrl,
               ),
               verticalSpaceLarge,
               Roundbutton(
-                  title: "ADD",
+                  title: "Edit",
                   loading: viewModel.loading1,
-                  onTap: () async {
-                    try {
-                      String id =
-                          DateTime.now().millisecondsSinceEpoch.toString();
-
-                      await viewModel.CertificateService.uploadCertificate(
+                  onTap: () async{
+                      try {
+                  
+                      await viewModel.certificateService.uploadCertificate(
                           viewModel,
                           id,
                           viewModel.titlectrl,
                           viewModel.descCtrl,
-                          false);
+                          true);
                     } catch (e) {
                       log("Error during function call: $e");
                     }
+                   
                   })
             ],
           ),
@@ -102,8 +121,8 @@ class ADDcertificateView extends StackedView<ADDcertificateViewModel> {
   }
 
   @override
-  ADDcertificateViewModel viewModelBuilder(
+  EditCertificateViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      ADDcertificateViewModel();
+      EditCertificateViewModel();
 }

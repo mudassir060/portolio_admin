@@ -5,7 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i17;
+import 'package:flutter/material.dart' as _i18;
 import 'package:flutter/material.dart';
 import 'package:portolio_admin/ui/views/add_certificate/add_certificate_view.dart'
     as _i12;
@@ -18,6 +18,8 @@ import 'package:portolio_admin/ui/views/certificate/certificate_view.dart'
 import 'package:portolio_admin/ui/views/contact/contact_view.dart' as _i13;
 import 'package:portolio_admin/ui/views/description/description_view.dart'
     as _i4;
+import 'package:portolio_admin/ui/views/edit_certificate/edit_certificate_view.dart'
+    as _i17;
 import 'package:portolio_admin/ui/views/editproject/editproject_view.dart'
     as _i16;
 import 'package:portolio_admin/ui/views/editskill/editskill_view.dart' as _i15;
@@ -32,7 +34,7 @@ import 'package:portolio_admin/ui/views/showcertificate/showcertificate_view.dar
 import 'package:portolio_admin/ui/views/skill/skill_view.dart' as _i5;
 import 'package:portolio_admin/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i18;
+import 'package:stacked_services/stacked_services.dart' as _i19;
 
 class Routes {
   static const homeView = '/home-view';
@@ -65,6 +67,8 @@ class Routes {
 
   static const editprojectView = '/editproject-view';
 
+  static const editCertificateView = '/edit-certificate-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -81,6 +85,7 @@ class Routes {
     addSkillsView,
     editskillView,
     editprojectView,
+    editCertificateView,
   };
 }
 
@@ -146,30 +151,34 @@ class StackedRouter extends _i1.RouterBase {
       Routes.editprojectView,
       page: _i16.EditprojectView,
     ),
+    _i1.RouteDef(
+      Routes.editCertificateView,
+      page: _i17.EditCertificateView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.DescriptionView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.DescriptionView(),
         settings: data,
       );
     },
     _i5.SkillView: (data) {
       final args = data.getArgs<SkillViewArguments>(nullOk: false);
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => _i5.SkillView(
             key: args.key,
             percentage: args.percentage,
@@ -180,14 +189,14 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.ShowSkillsView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.ShowSkillsView(),
         settings: data,
       );
     },
     _i7.ProjectsView: (data) {
       final args = data.getArgs<ProjectsViewArguments>(nullOk: false);
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => _i7.ProjectsView(
             key: args.key,
             image1: args.image1,
@@ -203,31 +212,31 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i8.ShowProjectsView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.ShowProjectsView(),
         settings: data,
       );
     },
     _i9.AddProjectsView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.AddProjectsView(),
         settings: data,
       );
     },
     _i10.CertificateView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.CertificateView(),
         settings: data,
       );
     },
     _i11.ShowcertificateView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.ShowcertificateView(),
         settings: data,
       );
     },
     _i12.ADDcertificateView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.ADDcertificateView(),
         settings: data,
       );
@@ -236,20 +245,20 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<ContactViewArguments>(
         orElse: () => const ContactViewArguments(),
       );
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => _i13.ContactView(key: args.key, data: args.data),
         settings: data,
       );
     },
     _i14.AddSkillsView: (data) {
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => const _i14.AddSkillsView(),
         settings: data,
       );
     },
     _i15.EditskillView: (data) {
       final args = data.getArgs<EditskillViewArguments>(nullOk: false);
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => _i15.EditskillView(
             key: args.key,
             title: args.title,
@@ -261,7 +270,7 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i16.EditprojectView: (data) {
       final args = data.getArgs<EditprojectViewArguments>(nullOk: false);
-      return _i17.MaterialPageRoute<dynamic>(
+      return _i18.MaterialPageRoute<dynamic>(
         builder: (context) => _i16.EditprojectView(
             key: args.key,
             firestoreimage: args.firestoreimage,
@@ -273,6 +282,20 @@ class StackedRouter extends _i1.RouterBase {
             youtubelink: args.youtubelink,
             id: args.id,
             index: args.index),
+        settings: data,
+      );
+    },
+    _i17.EditCertificateView: (data) {
+      final args = data.getArgs<EditCertificateViewArguments>(nullOk: false);
+      return _i18.MaterialPageRoute<dynamic>(
+        builder: (context) => _i17.EditCertificateView(
+            key: args.key,
+            certname: args.certname,
+            pdf: args.pdf,
+            description: args.description,
+            title: args.title,
+            index: args.index,
+            id: args.id),
         settings: data,
       );
     },
@@ -293,7 +316,7 @@ class SkillViewArguments {
     required this.idvalue,
   });
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   final double? percentage;
 
@@ -342,7 +365,7 @@ class ProjectsViewArguments {
     required this.id,
   });
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   final String image1;
 
@@ -360,7 +383,7 @@ class ProjectsViewArguments {
 
   final String? youtubelink;
 
-  final String? id;
+  final String id;
 
   @override
   String toString() {
@@ -403,7 +426,7 @@ class ContactViewArguments {
     this.data,
   });
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   final dynamic data;
 
@@ -433,7 +456,7 @@ class EditskillViewArguments {
     required this.selectedindex,
   });
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   final String title;
 
@@ -482,9 +505,9 @@ class EditprojectViewArguments {
     required this.index,
   });
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
-  final String firestoreimage;
+  final String? firestoreimage;
 
   final String? title;
 
@@ -498,7 +521,7 @@ class EditprojectViewArguments {
 
   final String? youtubelink;
 
-  final String? id;
+  final String id;
 
   final int index;
 
@@ -537,7 +560,61 @@ class EditprojectViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i18.NavigationService {
+class EditCertificateViewArguments {
+  const EditCertificateViewArguments({
+    this.key,
+    required this.certname,
+    required this.pdf,
+    required this.description,
+    required this.title,
+    required this.index,
+    required this.id,
+  });
+
+  final _i18.Key? key;
+
+  final String? certname;
+
+  final String? pdf;
+
+  final String? description;
+
+  final String? title;
+
+  final int index;
+
+  final String id;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "certname": "$certname", "pdf": "$pdf", "description": "$description", "title": "$title", "index": "$index", "id": "$id"}';
+  }
+
+  @override
+  bool operator ==(covariant EditCertificateViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key &&
+        other.certname == certname &&
+        other.pdf == pdf &&
+        other.description == description &&
+        other.title == title &&
+        other.index == index &&
+        other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^
+        certname.hashCode ^
+        pdf.hashCode ^
+        description.hashCode ^
+        title.hashCode ^
+        index.hashCode ^
+        id.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i19.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -581,7 +658,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> navigateToSkillView({
-    _i17.Key? key,
+    _i18.Key? key,
     double? percentage,
     String? label,
     required int index,
@@ -620,7 +697,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> navigateToProjectsView({
-    _i17.Key? key,
+    _i18.Key? key,
     required String image1,
     required int index,
     required String? title,
@@ -629,7 +706,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
     required String? applink,
     required String? gitlink,
     required String? youtubelink,
-    required String? id,
+    required String id,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -725,7 +802,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> navigateToContactView({
-    _i17.Key? key,
+    _i18.Key? key,
     dynamic data,
     int? routerId,
     bool preventDuplicates = true,
@@ -756,7 +833,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> navigateToEditskillView({
-    _i17.Key? key,
+    _i18.Key? key,
     required String title,
     required double slidervalue,
     required String id,
@@ -781,15 +858,15 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> navigateToEditprojectView({
-    _i17.Key? key,
-    required String firestoreimage,
+    _i18.Key? key,
+    required String? firestoreimage,
     required String? title,
     required String? description,
     required String? date,
     required String? applink,
     required String? gitlink,
     required String? youtubelink,
-    required String? id,
+    required String id,
     required int index,
     int? routerId,
     bool preventDuplicates = true,
@@ -809,6 +886,35 @@ extension NavigatorStateExtension on _i18.NavigationService {
             youtubelink: youtubelink,
             id: id,
             index: index),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToEditCertificateView({
+    _i18.Key? key,
+    required String? certname,
+    required String? pdf,
+    required String? description,
+    required String? title,
+    required int index,
+    required String id,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.editCertificateView,
+        arguments: EditCertificateViewArguments(
+            key: key,
+            certname: certname,
+            pdf: pdf,
+            description: description,
+            title: title,
+            index: index,
+            id: id),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -858,7 +964,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> replaceWithSkillView({
-    _i17.Key? key,
+    _i18.Key? key,
     double? percentage,
     String? label,
     required int index,
@@ -897,7 +1003,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> replaceWithProjectsView({
-    _i17.Key? key,
+    _i18.Key? key,
     required String image1,
     required int index,
     required String? title,
@@ -906,7 +1012,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
     required String? applink,
     required String? gitlink,
     required String? youtubelink,
-    required String? id,
+    required String id,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1002,7 +1108,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> replaceWithContactView({
-    _i17.Key? key,
+    _i18.Key? key,
     dynamic data,
     int? routerId,
     bool preventDuplicates = true,
@@ -1033,7 +1139,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> replaceWithEditskillView({
-    _i17.Key? key,
+    _i18.Key? key,
     required String title,
     required double slidervalue,
     required String id,
@@ -1058,15 +1164,15 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> replaceWithEditprojectView({
-    _i17.Key? key,
-    required String firestoreimage,
+    _i18.Key? key,
+    required String? firestoreimage,
     required String? title,
     required String? description,
     required String? date,
     required String? applink,
     required String? gitlink,
     required String? youtubelink,
-    required String? id,
+    required String id,
     required int index,
     int? routerId,
     bool preventDuplicates = true,
@@ -1086,6 +1192,35 @@ extension NavigatorStateExtension on _i18.NavigationService {
             youtubelink: youtubelink,
             id: id,
             index: index),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithEditCertificateView({
+    _i18.Key? key,
+    required String? certname,
+    required String? pdf,
+    required String? description,
+    required String? title,
+    required int index,
+    required String id,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.editCertificateView,
+        arguments: EditCertificateViewArguments(
+            key: key,
+            certname: certname,
+            pdf: pdf,
+            description: description,
+            title: title,
+            index: index,
+            id: id),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

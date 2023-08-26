@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import '../../../services/project_service.dart';
 import '../../../services/toastmessage_service.dart';
 import '../../common/app_colors.dart';
 import '../../common/ui_helpers.dart';
@@ -8,27 +9,26 @@ import '../../widgets/common/roundbutton/roundbutton.dart';
 import 'editproject_viewmodel.dart';
 
 class EditprojectView extends StackedView<EditprojectViewModel> {
-  final String firestoreimage;
+  final String? firestoreimage;
   final String? title;
   final String? description;
   final String? date;
   final String? applink;
   final String? gitlink;
   final String? youtubelink;
-  final String? id;
+  final String id;
   final int index;
   const EditprojectView(
       {Key? key,
       required this.firestoreimage,
-     required this.title,
-     required this.description,
-     required this.date,
+      required this.title,
+      required this.description,
+      required this.date,
       required this.applink,
-     required this.gitlink,
-     required this.youtubelink,
-     required this.id,
-     required this.index
-      })
+      required this.gitlink,
+      required this.youtubelink,
+      required this.id,
+      required this.index})
       : super(key: key);
 
   @override
@@ -37,6 +37,7 @@ class EditprojectView extends StackedView<EditprojectViewModel> {
     EditprojectViewModel viewModel,
     Widget? child,
   ) {
+    print("------------edit project page id is--------------$id");
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text("Edit Projects")),
@@ -49,8 +50,9 @@ class EditprojectView extends StackedView<EditprojectViewModel> {
             children: [
               verticalSpaceMassive,
               InkWell(
-                onTap: () {
-                  viewModel.getImageGallary();
+                onTap: () async {
+                  await viewModel.getImageGallary();
+                  // await viewModel.uploadImage();
                 },
                 child: Container(
                   height: 150,
@@ -60,7 +62,7 @@ class EditprojectView extends StackedView<EditprojectViewModel> {
                       border: Border.all(color: kcDarkGreyColor)),
                   child: viewModel.image != null
                       ? Image.file(viewModel.image!.absolute)
-                      : Image(image: NetworkImage(firestoreimage)),
+                      : Image(image: NetworkImage(firestoreimage!)),
                 ),
               ),
               verticalSpaceMedium,
@@ -98,24 +100,53 @@ class EditprojectView extends StackedView<EditprojectViewModel> {
                   title: "Edit",
                   loading: viewModel.loading1,
                   onTap: () async {
-                  
-                     if ( index!= -1) {
-                      viewModel.cref.doc(id).update({
-                        "title": viewModel.titlectrl.text,
-                        "decription": viewModel.descCtrl.text,
-                         "Date": viewModel.datectrl.text,
-                          "App link": viewModel.linkctrl.text,
-                           "Git link": viewModel.gitctrl.text,
-                            "Youtube link": viewModel.youtubectrl.text,
-                            "image":viewModel.imageUrl
-                      }).then((value) {
-                        ToastmessageService().toastmessage("Updated");
-                      }).onError((error, stackTrace) {
-                        ToastmessageService().toastmessage(error.toString());
-                      });
-                    }
-                    Navigator.pop(context);
+                    print(
+                        "-------------------- we enter roundbutton----------------------- ");
+                    ProjectService().saveOrUpdateProject(
+                        viewModel,
+                        id,
+                        viewModel.titlectrl,
+                        viewModel.descCtrl,
+                        viewModel.datectrl,
+                        viewModel.linkctrl,
+                        viewModel.gitctrl,
+                        viewModel.youtubectrl);
+                    // Navigator.pop(context);
+                    // if (index != -1) {
+                    //   Map<String, dynamic> newData = {};
+                    //   if (viewModel.titlectrl.text.isNotEmpty) {
+                    //     newData["title"] = viewModel.titlectrl.text;
+                    //   }
+                    //   if (viewModel.descCtrl.text.isNotEmpty) {
+                    //     newData["decription"] = viewModel.descCtrl.text;
+                    //   }
+                    //   if (viewModel.datectrl.text.isNotEmpty) {
+                    //     newData["Date"] = viewModel.datectrl.text;
+                    //   }
+                    //   if (viewModel.linkctrl.text.isNotEmpty) {
+                    //     newData["App link"] = viewModel.linkctrl.text;
+                    //   }
+                    //   if (viewModel.gitctrl.text.isNotEmpty) {
+                    //     newData["Git link"] = viewModel.gitctrl.text;
+                    //   }
+                    //   if (viewModel.youtubectrl.text.isNotEmpty) {
+                    //     newData["Youtube link"] = viewModel.youtubectrl.text;
+                    //   }
+                    //   await viewModel.uploadImageAndSaveUrl(id);
+                    //   if (viewModel.imageUrl != null &&
+                    //       viewModel.imageUrl!.isNotEmpty) {
+                    //     newData["image"] = viewModel.imageUrl;
+                    //   }
 
+                    //   // Update the document with the new data
+                    //   viewModel.cref.doc(id).update(newData).then((value) {
+                    //     ToastmessageService().toastmessage("Updated");
+                    //   }).onError((error, stackTrace) {
+                    //     ToastmessageService().toastmessage(error.toString());
+                    //   });
+
+                    //   Navigator.pop(context);
+                    // }
                   })
             ],
           ),

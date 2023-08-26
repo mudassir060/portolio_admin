@@ -8,7 +8,16 @@ import '../../../app/app.locator.dart';
 import 'Widget/pdfwidget.dart';
 
 class CertificateViewModel extends BaseViewModel {
+   CollectionReference cref = FirebaseFirestore.instance.collection("Certificate");
+
   final navigationService = locator<NavigationService>();
+  // ignore: non_constant_identifier_names
+  int selected_index = -1;
+  void setindex(index) {
+    selected_index = index;
+    notifyListeners();
+  }
+  
   final List certificatedata = [
     certificate1,
     certificate2,

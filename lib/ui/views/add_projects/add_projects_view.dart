@@ -78,11 +78,9 @@ class AddProjectsView extends StackedView<AddProjectsViewModel> {
                   title: "ADD",
                   loading: viewModel.loading1,
                   onTap: () async {
-                    String id =
-                        DateTime.now().millisecondsSinceEpoch.toString();
-                    ProjectService().uploadProject(
+                    ProjectService().saveOrUpdateProject(
                         viewModel,
-                        id,
+                        null,
                         viewModel.titlectrl,
                         viewModel.descCtrl,
                         viewModel.datectrl,

@@ -23,6 +23,7 @@ import 'package:portolio_admin/services/add_certificate_service.dart';
 import 'package:portolio_admin/services/contact_service.dart';
 import 'package:portolio_admin/ui/views/editskill/editskill_view.dart';
 import 'package:portolio_admin/ui/views/editproject/editproject_view.dart';
+import 'package:portolio_admin/ui/views/edit_certificate/edit_certificate_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -42,6 +43,7 @@ import 'package:portolio_admin/ui/views/editproject/editproject_view.dart';
     MaterialRoute(page: AddSkillsView),
     MaterialRoute(page: EditskillView),
     MaterialRoute(page: EditprojectView),
+    MaterialRoute(page: EditCertificateView),
 // @stacked-route
   ],
   dependencies: [

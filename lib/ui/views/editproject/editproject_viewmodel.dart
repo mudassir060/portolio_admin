@@ -18,9 +18,9 @@ class EditprojectViewModel extends BaseViewModel {
   TextEditingController gitctrl = TextEditingController();
   CollectionReference cref = FirebaseFirestore.instance.collection("Projects");
 
-  String? imageUrl; 
+  String? imageUrl;
   // Store the imageUrl here
-Future getImageGallary() async {
+  Future getImageGallary() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
@@ -33,19 +33,32 @@ Future getImageGallary() async {
 
   // ... other methods ...
 
-  Future uploadImage() async {
+  Future uploadImageAndSaveUrl(id) async {
     if (image != null) {
       firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
           .ref("/mypic/${DateTime.now().millisecondsSinceEpoch}");
       firebase_storage.UploadTask uploadTask = ref.putFile(image!.absolute);
 
-      await uploadTask.whenComplete(() async {
-        // Do something after the image is uploaded
-        imageUrl = await ref.getDownloadURL();
-        notifyListeners(); // Notify listeners of the imageUrl change
-      });
+      try {
+        await uploadTask.whenComplete(() async {
+          // Do something after the image is uploaded
+          imageUrl = await ref.getDownloadURL();
+
+          // Update the image URL in Firestore
+          await cref.doc(id).update({"image": imageUrl});
+
+          notifyListeners(); // Notify listeners of the imageUrl change
+        });
+      } catch (error) {
+        print("Error uploading image: $error");
+      }
     } else {
       print("No image selected.");
     }
+  }
+
+  void setvalue(bool loading) {
+    loading1 = loading;
+    notifyListeners();
   }
 }
